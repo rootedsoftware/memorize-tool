@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function doSomething() {
+        const values = {
+          _id: Math.random(12),
+          order: Number(document.getElementById('order').value),
+          grade: document.getElementById('grade').value,
+          author: document.getElementById('author').value,
+          title: document.getElementById('title').value,
+          poem: document.getElementById('poem').value
+        };
+        document.getElementById('preObject').value = JSON.stringify(values);
+        return false;
+      }
+      function copyObject() {
+        /* Get the text field */
+        var copyText = document.getElementById('preObject');
+
+        /* Select the text field */
+        copyText.select();
+
+        /* Copy the text inside the text field */
+        document.execCommand('copy');
+
+        /* Alert the copied text */
+        alert('Copied the text: ' + copyText.value);
+        return false;
+      }
+    </script>
+  </head>
+  <body>
+    <form onsubmit="return doSomething();">
+      <label>Order</label>
+      <input style="margin-top: 20px;" type="number" id="order" /> <br />
+      <label>Grade</label
+      ><select style="margin-top: 20px;" id="grade">
+        <option value="0">Kindergarten</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+      </select>
+      <br />
+      <label>Author</label> <input style="margin-top: 20px;" id="author" />
+      <br />
+      <label>Title</label> <input style="margin-top: 20px;" id="title" /> <br />
+      <textarea
+        style="margin: 20px; padding-top: 10px;"
+        id="poem"
+        rows="10"
+        cols="200"
+        placeholder="Poem"
+      ></textarea>
+      <br />
+      <input type="submit" value="Submit" />
+    </form>
+    <br />
+    <textarea
+      id="preObject"
+      style="margin: 20px; padding-top: 10px;"
+      rows="10"
+      cols="200"
+      placeholder="Object"
+    ></textarea>
+    <button onclick="return copyObject();">Copy Pre-text</button>
+  </body>
+</html>
