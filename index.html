@@ -4,7 +4,13 @@
     <script>
       function doSomething() {
         const values = {
-          _id: Math.random(12),
+          _id:
+            Math.random()
+              .toString(36)
+              .substring(2, 10) +
+            Math.random()
+              .toString(36)
+              .substring(2, 10),
           order: Number(document.getElementById('order').value),
           grade: document.getElementById('grade').value,
           author: document.getElementById('author').value,
