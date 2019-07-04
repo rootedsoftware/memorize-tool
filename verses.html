@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function getFormValues() {
+        const customDateRange =
+          document.getElementById('customDateRange').value === 'true';
+        const dateRange = {
+          start: {
+            month: Number(document.getElementById('startMonth').value),
+            day: Number(document.getElementById('startDay').value),
+          },
+          end: {
+            month: Number(document.getElementById('endMonth').value),
+            day: Number(document.getElementById('endDay').value),
+          },
+        };
+        const values = {
+          _id:
+            Math.random()
+              .toString(36)
+              .substring(2, 10) +
+            Math.random()
+              .toString(36)
+              .substring(2, 10),
+          year: Number(document.getElementById('year').value),
+          week: Number(document.getElementById('week').value),
+          customDateRange,
+          dateRange,
+          book: document.getElementById('book').value,
+          chapter: document.getElementById('chapter').value,
+          startVerse: document.getElementById('startVerse').value,
+          endVerse: document.getElementById('endVerse').value,
+          text: document.getElementById('text').value,
+        };
+        const rootVerseURL = 'https://www.bible.com/bible/59/';
+        values.verseURL = `${rootVerseURL}${values.book
+          .replace(' ', '')
+          .slice(0, 3)
+          .toLocaleLowerCase()}.${values.chapter}.${values.startVerse}${
+          values.endVerse ? '-' + values.endVerse : ''
+        }`;
+
+        document.getElementById('preObject').value = JSON.stringify(values);
+        /* Get the text field */
+        var copyText = document.getElementById('preObject');
+
+        /* Select the text field */
+        copyText.select();
+
+        /* Copy the text inside the text field */
+        document.execCommand('copy');
+
+        /* Alert the copied text */
+        alert('Copied the text: ' + copyText.value);
+        return false;
+      }
+    </script>
+  </head>
+  <body>
+    <form onsubmit="return getFormValues();">
+      <label>Year</label>
+      <input style="margin-top: 20px;" id="year" value="2020" />
+      <label>Week</label>
+      <input style="margin-top: 20px;" id="week" /> <br />
+      <label>customDateRange</label>
+      <select style="margin-top: 20px;" id="customDateRange">
+        <br />
+        <option value="false">false</option>
+        <option value="true">true</option>
+      </select>
+      <br />
+      <label>dateRange</label><br />
+      <input placeholder="Start Month" type="number" id="startMonth" />
+      <input placeholder="Start Day" type="number" id="startDay" /><br />
+      <input placeholder="End Month" type="number" id="endMonth" />
+      <input placeholder="End Day" type="number" id="endDay" />
+      <br />
+      <label>book</label> <input style="margin-top: 20px;" id="book" />
+      <br />
+      <label>chapter</label> <input style="margin-top: 20px;" id="chapter" />
+      <br />
+      <label>start verse</label>
+      <input style="margin-top: 20px;" id="startVerse" />
+      <br />
+      <label>end verse</label> <input style="margin-top: 20px;" id="endVerse" />
+      <br />
+      <textarea
+        style="margin: 20px; padding-top: 10px;"
+        id="text"
+        rows="4"
+        cols="200"
+        placeholder="Verse Text"
+      ></textarea>
+      <br />
+      <input type="submit" value="Submit" />
+    </form>
+    <br />
+    <textarea
+      id="preObject"
+      style="margin: 20px; padding-top: 10px;"
+      rows="10"
+      cols="200"
+      placeholder="Object"
+    ></textarea>
+  </body>
+</html>
