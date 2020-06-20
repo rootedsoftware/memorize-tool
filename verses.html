@@ -34,7 +34,16 @@
           text: document.getElementById('text').value,
         };
         const rootVerseURL = 'https://www.bible.com/bible/59/';
-        values.verseURL = `${rootVerseURL}${values.book
+        let betterBookName = '';
+        console.log(betterBookName)
+        if (values.book === "John") {
+          betterBookName = 'JHN';
+        }
+        if (values.book === "1 John") {
+          betterBookName = '1JHN';
+        } 
+
+        values.verseURL = `${rootVerseURL}${betterBookName ? betterBookName : values.book
           .replace(' ', '')
           .slice(0, 3)
           .toLocaleLowerCase()}.${values.chapter}.${values.startVerse}${
