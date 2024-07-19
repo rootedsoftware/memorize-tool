@@ -46,6 +46,9 @@
         if (values.book === 'Philippians') {
           betterBookName = 'php';
         }
+        if (values.book === 'Nahum') {
+          betterBookName = 'nam';
+        }
 
         values.verseURL = `${rootVerseURL}${
           betterBookName
@@ -56,7 +59,7 @@
         }`;
 
         document.getElementById('preObject').value =
-          JSON.stringify(values) + ',';
+          JSON.stringify(values, null, 2) + ',';
         /* Get the text field */
         var copyText = document.getElementById('preObject');
 
@@ -66,8 +69,6 @@
         /* Copy the text inside the text field */
         document.execCommand('copy');
 
-        /* Alert the copied text */
-        alert('Copied the text: ' + copyText.value);
         return false;
       }
     </script>
@@ -76,7 +77,7 @@
   <body>
     <form onsubmit="return getFormValues();">
       <label>Year</label>
-      <input style="margin-top: 20px" id="year" value="2022" />
+      <input style="margin-top: 20px" id="year" value="2024" />
       <label>Week</label>
       <input style="margin-top: 20px" id="week" /> <br />
       <label>customDateRange</label>
